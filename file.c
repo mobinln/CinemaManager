@@ -5,16 +5,28 @@
 
 #include "config.c"
 
-#define FNAME "data.txt"
-
 char *makeFileName(int saloonNum){
     char fileName[15];
     sprintf(fileName, "%s %d.txt", "saloon", saloonNum);
     return fileName;
 }
+int isExist(const char *fname){
+    FILE *p;
+    if ((p = fopen(fname, "r")))
+    {
+        fclose(p);
+        return 1;
+    }
+    return 0;
+}
 void createSaloon(int saloonNum){
-    char fName[15] = makeFileName(saloonNum);
+    char fName[15];
+    sprintf(fName, "%s %d.txt", "saloon", saloonNum);
     FILE *p = fopen(fName, "w");
+    fclose(p);
+}
+void createSettings(){
+    FILE *p = fopen("setting.txt", "w");
     fclose(p);
 }
 void createFilms(){
@@ -53,11 +65,10 @@ void delete(){
 }
 */
 void insertSansToSaloon(int saloonNum){
-    char fName[15] = makeFileName(saloonNum);
-    fopen(fName, "a");
-    
+    char fName[15];
+    sprintf(fName, "%s %d.txt", "saloon", saloonNum);
 }
-
+/*
 void search(){
     struct Person per;
     int id, flag=0;
@@ -80,6 +91,7 @@ void search(){
     }
     fclose(p);
 }
+*/
 /*
 void update(){
     int id, i, flag=0;
@@ -117,7 +129,8 @@ void update(){
 void printAll(int saloonNum){
     struct Sans sans;
     
-    char fileName[15] = makeFileName(saloonNum);
+    char fileName[15] = {'\0'};
+    sprintf(fileName, "%s %d.txt", "saloon", saloonNum);
 
     int i;
 
@@ -125,7 +138,7 @@ void printAll(int saloonNum){
 
     for (i = 0; feof(p) == 0; i++)
     {
-        fscanf(p, "%s %s %s %s %s %d", sans.filmName, sans.date, sans.timeStart, sans.timeEnd, &sans.posLeft);
+        fscanf(p, "%s %s %s %s %d", sans.filmName, sans.date, sans.timeStart, sans.timeEnd, &sans.posLeft);
         printf("%s %s %s %s %d", sans.filmName, sans.date, sans.timeStart, sans.timeEnd, sans.posLeft);
     }
 
