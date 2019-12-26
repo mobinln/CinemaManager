@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stddef.h>
+#include "file.c"
 
 int main(){
-    printf("It works!!!");
+    createSaloon(1);
 }
