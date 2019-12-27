@@ -3,9 +3,12 @@
 #include <ctype.h>
 #include <string.h>
 
-#include "config.c"
+#include "../src/config.c"
+#include "../src/saloon.c"
+#include "../src/film.c"
+#include "../src/sans.c"
 
-char *makeFileName(int saloonNum){
+char* makeFileName(int saloonNum){
     char fileName[15];
     sprintf(fileName, "%s %d.txt", "saloon", saloonNum);
     return fileName;
@@ -19,18 +22,28 @@ int isExist(const char *fname){
     }
     return 0;
 }
-void createSaloon(int saloonNum){
-    char fName[15];
-    sprintf(fName, "%s %d.txt", "saloon", saloonNum);
-    FILE *p = fopen(fName, "w");
-    fclose(p);
-}
 void createSettings(){
     FILE *p = fopen("setting.txt", "w");
     fclose(p);
 }
-void createFilms(){
-    FILE *p = fopen("films.txt", "w");
+void writeSetting(){
+    char fName[30];
+    int i = 1;
+    FILE *p = fopen("data/setting.txt", "w");
+    sprintf(fName, "data/saloon %d.txt", 1);
+    //printf("%s", fName);
+    while (isExist(fName))
+    {
+        sprintf(fName, "data/saloon %d.txt", i);
+        if (isExist(fName))
+        {
+            fprintf(p, "saloon-%d\n", i);
+        }
+        i++;
+    }
+    
+    
+
     fclose(p);
 }
 /*
@@ -64,10 +77,6 @@ void delete(){
     fclose(p);
 }
 */
-void insertSansToSaloon(int saloonNum){
-    char fName[15];
-    sprintf(fName, "%s %d.txt", "saloon", saloonNum);
-}
 /*
 void search(){
     struct Person per;
