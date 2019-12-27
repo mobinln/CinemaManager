@@ -6,7 +6,7 @@
 int main(){
     
     char cmd=0, temp=0;
-    /*
+    writeSetting();
     if(isExist("data/setting.txt")){
         printf("Hello, Welcome to the cinema manager\nWhat do you want to do?\nmanage cinema(1) or but ticket(2)?\n");
         scanf("%c", &cmd);
@@ -29,7 +29,8 @@ int main(){
                     removeSaloon(temp);
                 }
                 else if(cmd == '2'){
-
+                    createSaloon();
+                    puts("Created succesfuly..");
                 }
                 else{
                     printf("try again...");
@@ -62,8 +63,5 @@ int main(){
         createFilms();
         puts("We make some initializes now you can use app, Please reopen");
     }
-    */
-   writeSetting();
 
-    
 }

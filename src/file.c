@@ -31,18 +31,25 @@ void writeSetting(){
     int i = 1;
     FILE *p = fopen("data/setting.txt", "w");
     sprintf(fName, "data/saloon %d.txt", 1);
-    //printf("%s", fName);
+    
     while (isExist(fName))
     {
         sprintf(fName, "data/saloon %d.txt", i);
         if (isExist(fName))
         {
-            fprintf(p, "saloon-%d\n", i);
+            sprintf(fName, "data/saloon %d.txt", i+1);
+            if (!isExist(fName))
+            {
+                fprintf(p, "saloon-%d", i);
+            }
+            else
+            {
+                fprintf(p, "saloon-%d\n", i);
+            }
+            
         }
         i++;
     }
-    
-    
 
     fclose(p);
 }
