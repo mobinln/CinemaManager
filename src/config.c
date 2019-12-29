@@ -11,7 +11,7 @@ struct Film
     int lenHour;
     int lenMin;
     char summerize[250];
-    char con[50];
+    char gen[50];
 };
 
 struct Sans

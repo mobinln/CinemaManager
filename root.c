@@ -40,7 +40,37 @@ int main(){
 
             }
             else if(cmd == '3'){
+                showFilmList();
+                puts("For adding a new movie (1), Removing (2) and for Updating an excisting movie (3)");
+                scanf("%c", &cmd);
+                scanf("%c", &cmd);
+                if (cmd == '1')
+                {
+                    struct Film film;
 
+                    printf("Enter name of movie : ");
+                    scanf("%s", film.name);
+                    printf("Enter Hour and Minutes : ");
+                    scanf("%d %d", &film.lenHour, &film.lenMin);
+                    printf("Enter a summerize (max 250 chars) : ");
+                    scanf("%s", film.summerize);
+                    printf("Finaly enter gender of movie : ");
+                    scanf("%s", film.gen);
+
+                    addMovie(film);
+                }
+                else if (cmd == '2')
+                {
+                    /* remMovie */
+                }
+                else if (cmd == '3')
+                {
+                    /* uptMovie */
+                }
+                else
+                {
+                    puts("Try again...");
+                }
             }
             else{
                 printf("try again..");

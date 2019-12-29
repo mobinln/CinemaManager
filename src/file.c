@@ -142,7 +142,8 @@ void update(){
     fclose(p);
 }
 */
-void printAll(int saloonNum){
+
+void showSans(int saloonNum){
     struct Sans sans;
     
     char fileName[15] = {'\0'};
