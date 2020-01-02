@@ -3,4 +3,7 @@
 ## Cinema Manager
 
 I complete Saloon and films 
-- Sans
+TODO:
+- Update Movies
+- Add, Remove, Update, Sans
+- Quick Sort

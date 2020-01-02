@@ -9,7 +9,7 @@ int main(){
     writeSetting();
     
     if(isExist("data/setting.txt")){
-        printf("Hello, Welcome to the cinema manager\nWhat do you want to do?\nmanage cinema(1) or but ticket(2)?\n");
+        printf("Hello, Welcome to the cinema manager\nWhat do you want to do?\nmanage cinema(1) or buy ticket(2)?\n");
         scanf("%c", &cmd);
         if (cmd == '1')
         {
