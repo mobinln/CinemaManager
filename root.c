@@ -7,6 +7,7 @@ int main(){
     
     char cmd=0, temp=0;
     writeSetting();
+    
     if(isExist("data/setting.txt")){
         printf("Hello, Welcome to the cinema manager\nWhat do you want to do?\nmanage cinema(1) or but ticket(2)?\n");
         scanf("%c", &cmd);
@@ -52,8 +53,8 @@ int main(){
                     scanf("%s", film.name);
                     printf("Enter Hour and Minutes : ");
                     scanf("%d %d", &film.lenHour, &film.lenMin);
-                    printf("Enter a summerize (max 250 chars) : ");
-                    scanf("%s", film.summerize);
+                    printf("Enter a summerize (max 250 chars), please replace spaces with dash (-) : ");
+                    scanf("%s", film.summerize); 
                     printf("Finaly enter gender of movie : ");
                     scanf("%s", film.gen);
 
@@ -61,7 +62,12 @@ int main(){
                 }
                 else if (cmd == '2')
                 {
-                    /* remMovie */
+                    struct Film film;
+
+                    puts("Enter film name : ");
+                    scanf("%s", film.name);
+
+                    remMovie(film);
                 }
                 else if (cmd == '3')
                 {
