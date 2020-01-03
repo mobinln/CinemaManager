@@ -45,7 +45,7 @@ void addMovie(struct Film film){
 }
 
 void remMovie(struct Film film){
-    struct Film temp[100];
+    struct Film temp[1000];
     int i;
     FILE *p = fopen("data/films.txt", "r+");
 
@@ -62,10 +62,44 @@ void remMovie(struct Film film){
     {
         if (strcmp(temp[j].name, film.name))
         {
-            fprintf(p, "%s %d %d %s %s\n", temp[j].name, temp[j].lenHour, temp[j].lenMin, temp[j].summerize, temp[j].gen);
+            fprintf(p, "\n%s %d %d %s %s", temp[j].name, temp[j].lenHour, temp[j].lenMin, temp[j].summerize, temp[j].gen);
         }
     }
     
     fclose(p);
     puts("Removed successfuly");
+}
+
+void upMovie(char name[], struct Film film){
+    struct Film films[1000];
+    int i;
+    FILE *p = fopen("data/films.txt", "r+");
+
+    for (i = 0; feof(p) == 0; i++)
+    {
+        fscanf(p, "%s %d %d %s %s", films[i].name, &films[i].lenHour, &films[i].lenMin, films[i].summerize, films[i].gen);
+    }
+    
+    fclose(p);
+
+    for (size_t j = 0; j < i; j++)
+    {
+        if (strcmp(films[j].name, name) == 0)
+        {
+            strcpy(films[j].gen, film.gen);
+            films[j].lenHour = film.lenHour;
+            films[j].lenMin = film.lenMin;
+            strcpy(films[j].summerize, film.summerize);
+        }
+    }
+
+    p = fopen("data/films.txt", "w");
+
+    for (size_t j = 0; j < i; j++)
+    {
+        fprintf(p, "\n%s %d %d %s %s", films[j].name, films[j].lenHour, films[j].lenMin, films[j].summerize, films[j].gen);
+    }
+    
+    fclose(p);
+    puts("Updated successfuly..");
 }

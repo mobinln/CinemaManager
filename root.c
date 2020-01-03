@@ -71,7 +71,19 @@ int main(){
                 }
                 else if (cmd == '3')
                 {
-                    /* uptMovie */
+                    struct Film film;
+                    char name[30];
+                    puts("Enter the name of movie you want to update : ");
+                    scanf("%s", name);
+
+                    printf("Enter Hour and Minitue : ");
+                    scanf("%d %d", &film.lenHour, &film.lenMin);
+                    printf("Enter summrize : ");
+                    scanf("%s", film.summerize);
+                    printf("Enter gender : ");
+                    scanf("%s", film.gen);
+
+                    upMovie(name, film);
                 }
                 else
                 {
@@ -84,7 +96,38 @@ int main(){
         }
         else if (cmd == '2')
         {
-            
+            struct Sans sans;
+            int saloonNum;
+            char cmd;
+            printf("Enter saloon number : ");
+            scanf("%d", &saloonNum);
+            /* showSaloonSans(saloonNum); */
+            printf("OK, Now for add (1), remove (2), update (3)");
+            scanf("%c", &cmd);
+            if (cmd == '1')
+            {
+                printf("Enter name of movie : ");
+                scanf("%s", sans.filmName);
+                printf("Number of sits : ");
+                scanf("%d", &sans.sits);
+                printf("Enter date of show : ");
+                scanf("%d %d %d", &sans.year, &sans.month, &sans.day);
+                printf("Enter time of start : ");
+                scanf("%d %d", &sans.SH, &sans.SM);
+                printf("Enter time of end : ");
+                scanf("%d %d", &sans.EH, &sans.EM);
+                printf("Enter Positions Left : ");
+                scanf("%d", &sans.posLeft);
+                addSansToSaloon(saloonNum, sans);
+            }
+            else if(cmd == '2')
+            {
+                /* remSansFromSaloon(saloonNum); */
+            }
+            else if(cmd == '3')
+            {
+                /* updateAnExitingSansInSaloon(saloonNum); */
+            }
         }
         else
         {

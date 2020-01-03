@@ -17,9 +17,13 @@ struct Film
 struct Sans
 {
     char filmName[30];
-    char date[11];
-    char timeStart[6];
-    char timeEnd[6];
+    int sits;
+    //char date[11];
+    int year, month, day;
+    //char timeStart[6];
+    int SH, SM;
+    //char timeEnd[6];
+    int EH, EM;
     int posLeft;
 };
 
