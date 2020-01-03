@@ -142,7 +142,7 @@ void update(){
     fclose(p);
 }
 */
-
+/*
 void showSans(int saloonNum){
     struct Sans sans;
     
@@ -160,4 +160,4 @@ void showSans(int saloonNum){
     }
 
     fclose(p);
-}
+}*/
