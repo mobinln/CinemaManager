@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 
+#include "rqs.c"
 
 /* makeGoldenNumDate */
 int GND(struct Sans sans){
@@ -12,7 +13,7 @@ int GND(struct Sans sans){
 }
 
 /* makeGoldenNumTime */
-int GNT(int H, int M){
+float GNT(int H, int M){
     int num = 0;
     num += H * 100;
     num += M;
@@ -69,15 +70,42 @@ void addSansToSaloon(int slnNum, struct Sans sans){
 
 void showSaloonSans(int slnNum){
     struct Sans sans;
+    struct Sans sanses[1000];
+    int sns[1000] = {0}, snsCp[1000] = {0};
+    int inds[1000] = {0};
     char fileName[50];
+    int i, cnt = 0;
     sprintf(fileName, "data/saloon %d.txt", slnNum);
 
     FILE *p = fopen(fileName, "r");
 
-    for (size_t i = 0; feof(p) == 0; i++)
+    for (i = 0; feof(p) == 0; i++)
     {
         fscanf(p, "%s %d %d %d %d %d %d %d %d %d", sans.filmName, &sans.sits, &sans.year, &sans.month, &sans.day, &sans.SH, &sans.SM, &sans.EH, &sans.EM, &sans.posLeft);
-        printf("%s sits: %d %d-%d-%d from %d:%d to %d:%d positions left: %d\n", sans.filmName, sans.sits, sans.year, sans.month, sans.day, sans.SH, sans.SM, sans.EH, sans.EM, sans.posLeft);
+        //printf("%s sits: %d %d-%d-%d from %d:%d to %d:%d positions left: %d\n", sans.filmName, sans.sits, sans.year, sans.month, sans.day, sans.SH, sans.SM, sans.EH, sans.EM, sans.posLeft);
+        sanses[i] = sans;
+        sns[i] = GND(sans);
+        snsCp[i] = sns[i];
+    }
+
+    quicksort(snsCp, 0, i-1);
+    /* snsCp */
+    for (size_t j = 0; j < i; j++)
+    {
+        /* sns */
+        for (size_t c = 0; c < i; c++)
+        {
+            if(snsCp[j] == sns[c]){
+                inds[cnt] = c;
+                cnt++;  
+            }
+        }
+        
+    }
+    
+    for (size_t j = 0; j < i; j++)
+    {
+        printf("%s sits: %d %d-%d-%d from %d:%d to %d:%d positions left: %d\n", sanses[inds[j]].filmName, sanses[inds[j]].sits, sanses[inds[j]].year, sanses[inds[j]].month, sanses[inds[j]].day, sanses[inds[j]].SH, sanses[inds[j]].SM, sanses[inds[j]].EH, sanses[inds[j]].EM, sanses[inds[j]].posLeft);
 
     }
     
