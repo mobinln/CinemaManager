@@ -105,7 +105,7 @@ void showSaloonSans(int slnNum){
     
     for (size_t j = 0; j < i; j++)
     {
-        printf("%s sits: %d %d-%d-%d from %d:%d to %d:%d positions left: %d\n", sanses[inds[j]].filmName, sanses[inds[j]].sits, sanses[inds[j]].year, sanses[inds[j]].month, sanses[inds[j]].day, sanses[inds[j]].SH, sanses[inds[j]].SM, sanses[inds[j]].EH, sanses[inds[j]].EM, sanses[inds[j]].posLeft);
+        printf("%d - %s sits: %d %d-%d-%d from %d:%d to %d:%d positions left: %d\n", j,sanses[inds[j]].filmName, sanses[inds[j]].sits, sanses[inds[j]].year, sanses[inds[j]].month, sanses[inds[j]].day, sanses[inds[j]].SH, sanses[inds[j]].SM, sanses[inds[j]].EH, sanses[inds[j]].EM, sanses[inds[j]].posLeft);
 
     }
     

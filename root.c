@@ -2,6 +2,7 @@
 #include <stddef.h>
 
 #include "src/file.c"
+int BTP = 2;
 
 int main(){
     
@@ -58,7 +59,7 @@ int main(){
                     scanf("%s", sans.filmName);
                     printf("Number of sits : ");
                     scanf("%d", &sans.sits);
-                    printf("Enter date of show : ");
+                    printf("Enter date of show (Y M D) : ");
                     scanf("%d %d %d", &sans.year, &sans.month, &sans.day);
                     printf("Enter time of start : ");
                     scanf("%d %d", &sans.SH, &sans.SM);
@@ -155,7 +156,39 @@ int main(){
         }
         else if (cmd == '2')
         {
-            /* buyTicket */ 
+            char cmd;
+            printf("Do you want to see film list ? Y/N  ");
+            scanf("%c", &cmd);
+            scanf("%c", &cmd);
+            if (cmd == 'y' || cmd == 'Y')
+            {
+                showFilmList();
+            }
+            else{
+                int slnNum;
+                int sansNum;
+                int tNums;
+                char c;
+                char fname[20], lname[30];
+                printf("Welcome, please enter your name: ");
+                scanf("%s %s", fname, lname);
+                printf("Wich saloon do you want ? \n");
+                showSaloons();
+                scanf("%d", &slnNum);
+                printf("Wich Sans ? \n");
+                showSaloonSans(slnNum);
+                scanf("%d", &sansNum);
+                printf("How many tickets do you want ? ");
+                scanf("%d", &tNums);
+                printf("Your final factor is : %d\n", tNums * BTP);
+                printf("Do you agree ? Y/N  ");
+                scanf("%c", &c);
+                scanf("%c", &c);
+                if (c == 'Y' || c == 'y')
+                {
+                    buyTicket(fname, lname, sansNum, slnNum, tNums);
+                }
+            }
         }
         else
         {
