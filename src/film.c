@@ -103,3 +103,22 @@ void upMovie(char name[], struct Film film){
     fclose(p);
     puts("Updated successfuly..");
 }
+
+int isMovieExist(char name[]){
+    struct Film film;
+    int i;
+    FILE *p = fopen("data/films.txt", "r+");
+
+    for (i = 0; feof(p) == 0; i++)
+    {
+        fscanf(p, "%s %d %d %s %s", film.name, &film.lenHour, &film.lenMin, film.summerize, film.gen);
+        if (strcmp(film.name, name))
+        {
+            return 1;
+        }
+        
+    }
+    
+    fclose(p);
+    return 0;
+}

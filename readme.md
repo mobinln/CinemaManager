@@ -4,7 +4,5 @@
 
 I complete Saloon and films 
 TODO:
-- Remove, Update, Sans
-- isMovieExist()
 - Buying ticket
 - Complete films

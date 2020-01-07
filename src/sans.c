@@ -52,7 +52,7 @@ int isSansFit(int slnNum, struct Sans sans){
 void addSansToSaloon(int slnNum, struct Sans sans){
     char fileName[50];
     sprintf(fileName, "data/saloon %d.txt", slnNum);
-    if (isSansFit(slnNum, sans))
+    if (isSansFit(slnNum, sans) && isMovieExist(sans.filmName))
     {
         FILE *p = fopen(fileName, "a");
 
@@ -110,4 +110,83 @@ void showSaloonSans(int slnNum){
     }
     
     fclose(p);    
+}
+
+void remSansFromSaloon(int slnNum, struct Sans sans){
+    struct Sans sanses[1000] = {0}, temp;
+    char fname[50];
+    int i;
+    sprintf(fname, "data/saloon %d.txt", slnNum);
+    FILE *p = fopen(fname, "r+");
+
+    for (i = 0; feof(p) == 0; i++)
+    {
+        fscanf(p, "%s %d %d %d %d %d %d %d %d %d", temp.filmName, &temp.sits, &temp.year, &temp.month, &temp.day, &temp.SH, &temp.SM, &temp.EH, &temp.EM, &temp.posLeft);
+        if (temp.year != sans.year || temp.month != sans.month || temp.day != sans.day)
+        {
+            if (temp.SH != sans.SH || temp.SM != sans.SM)
+            {
+                sanses[i] = temp;
+            }
+            
+        }
+        //printf("\n%s %d %d %d %d %d %d %d %d %d", temp.filmName, temp.sits, temp.year, temp.month, temp.day, temp.SH, temp.SM, temp.EH, temp.EM, temp.posLeft);
+        //printf("\n%s %d %d %d %d %d %d %d %d %d", sanses[i].filmName, sanses[i].sits, sanses[i].year, sanses[i].month, sanses[i].day, sanses[i].SH, sanses[i].SM, sanses[i].EH, sanses[i].EM, sanses[i].posLeft);
+
+    }
+
+    fclose(p);
+
+    p = fopen(fname, "w+");
+
+    for (size_t j = 0; j < i; j++)
+    {
+        if (sanses[j].day != 0)
+            fprintf(p, "\n%s %d %d %d %d %d %d %d %d %d", sanses[j].filmName, sanses[j].sits, sanses[j].year, sanses[j].month, sanses[j].day, sanses[j].SH, sanses[j].SM, sanses[j].EH, sanses[j].EM, sanses[j].posLeft);
+        //printf("\n%s %d %d %d %d %d %d %d %d %d", sanses[j].filmName, sanses[j].sits, sanses[j].year, sanses[j].month, sanses[j].day, sanses[j].SH, sanses[j].SM, sanses[j].EH, sans.EM, sanses[j].posLeft);
+
+    }
+    
+    fclose(p);
+    puts("Removed successfuly..");
+}
+
+void updateAnExitingSansInSaloon(int slnNum, struct Sans intSans, struct Sans upSans){
+    struct Sans sanses[1000] = {0}, temp;
+    char fname[50];
+    int i;
+    sprintf(fname, "data/saloon %d.txt", slnNum);
+    FILE *p = fopen(fname, "r+");
+
+    for (i = 0; feof(p) == 0; i++)
+    {
+        fscanf(p, "%s %d %d %d %d %d %d %d %d %d", temp.filmName, &temp.sits, &temp.year, &temp.month, &temp.day, &temp.SH, &temp.SM, &temp.EH, &temp.EM, &temp.posLeft);
+        sanses[i] = temp;
+        if (temp.year == intSans.year || temp.month == intSans.month || temp.day == intSans.day)
+        {
+            if (temp.SH == intSans.SH || temp.SM == intSans.SM)
+            {
+                sanses[i] = upSans;
+            }
+            
+        }
+        //printf("\n%s %d %d %d %d %d %d %d %d %d", temp.filmName, temp.sits, temp.year, temp.month, temp.day, temp.SH, temp.SM, temp.EH, temp.EM, temp.posLeft);
+        //printf("\n%s %d %d %d %d %d %d %d %d %d", sanses[i].filmName, sanses[i].sits, sanses[i].year, sanses[i].month, sanses[i].day, sanses[i].SH, sanses[i].SM, sanses[i].EH, sanses[i].EM, sanses[i].posLeft);
+
+    }
+
+    fclose(p);
+
+    p = fopen(fname, "w+");
+
+    for (size_t j = 0; j < i; j++)
+    {
+        if (sanses[j].day != 0)
+            fprintf(p, "\n%s %d %d %d %d %d %d %d %d %d", sanses[j].filmName, sanses[j].sits, sanses[j].year, sanses[j].month, sanses[j].day, sanses[j].SH, sanses[j].SM, sanses[j].EH, sanses[j].EM, sanses[j].posLeft);
+        //printf("\n%s %d %d %d %d %d %d %d %d %d", sanses[j].filmName, sanses[j].sits, sanses[j].year, sanses[j].month, sanses[j].day, sanses[j].SH, sanses[j].SM, sanses[j].EH, sans.EM, sanses[j].posLeft);
+
+    }
+    
+    fclose(p);
+    puts("Updated successfuly..");
 }

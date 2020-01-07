@@ -70,11 +70,33 @@ int main(){
                 }
                 else if(cmd == '2')
                 {
-                    /* remSansFromSaloon(saloonNum); */
+                    struct Sans sans;
+                    printf("Enter the date (Y M D) : ");
+                    scanf("%d %d %d", &sans.year, &sans.month, &sans.day);
+                    printf("Now enter Hour and Min of start : ");
+                    scanf("%d %d", &sans.SH, &sans.SM);
+                    remSansFromSaloon(saloonNum, sans);
                 }
                 else if(cmd == '3')
                 {
-                    /* updateAnExitingSansInSaloon(saloonNum); */
+                    struct Sans sans, intSans;
+                    printf("Enter the date of the sans wich you want to update (Y M D  Hour Min) : ");
+                    scanf("%d %d %d %d %d", &intSans.year, &intSans.month, &intSans.day, &intSans.SH, &intSans.SM);
+                    printf("Now enter the updated fields\n");
+                    printf("Enter name of movie : ");
+                    scanf("%s", sans.filmName);
+                    printf("Number of sits : ");
+                    scanf("%d", &sans.sits);
+                    sans.year = intSans.year;
+                    sans.month = intSans.month;
+                    sans.day = intSans.day;
+                    sans.SH = intSans.SH;
+                    sans.SM = intSans.SM;
+                    sans.EH = intSans.EH;
+                    sans.EM = intSans.EM;
+                    printf("Enter Positions Left : ");
+                    scanf("%d", &sans.posLeft);
+                    updateAnExitingSansInSaloon(saloonNum, intSans, sans);
                 }
             }
             else if(cmd == '3'){
